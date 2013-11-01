@@ -73,10 +73,10 @@ module Shoulda # :nodoc:
 
             @failure_message_for_should_not = "Didn't expect to #{description}"
             true
-          rescue ::ActionController:RoutingError: error
+          rescue ::ActionController::RoutingError => error
             @failure_message_for_should = error.message
             false
-          rescue Shoulda::Matchers:AssertionError: error
+          rescue Shoulda::Matchers::AssertionError => error
             @failure_message_for_should = error.message
             false
           end

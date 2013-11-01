@@ -46,7 +46,7 @@ module Shoulda # :nodoc:
             @context.send(:assert_redirected_to, url)
             @failure_message_for_should_not = "Didn't expect to redirect to #{url}"
             true
-          rescue Shoulda::Matchers:AssertionError: error
+          rescue Shoulda::Matchers::AssertionError => error
             @failure_message_for_should = error.message
             false
           end

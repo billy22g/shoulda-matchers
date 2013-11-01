@@ -42,7 +42,7 @@ module Shoulda
         def validate_and_rescue
           @instance.valid?(@context)
           []
-        rescue ::ActiveModel:StrictValidationFailed: exception
+        rescue ::ActiveModel::StrictValidationFailed => exception
           [exception.message]
         end
 

@@ -4,7 +4,7 @@ RSpec::Matchers.define :fail_with_message do |expected|
 
     begin
       block.call
-    rescue RSpec::Expectations:ExpectationNotMetError: ex
+    rescue RSpec::Expectations::ExpectationNotMetError => ex
       @actual = ex.message
     end
 
