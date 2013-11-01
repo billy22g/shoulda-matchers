@@ -8,7 +8,7 @@ module Shoulda # :nodoc:
         def initialize(attribute, odd: true, even: true)
           @attribute = attribute
 
-          if options[:odd] && !options[:even]
+          if odd && !even
             @disallow_value_matcher = DisallowValueMatcher.new(NON_ODD_NUMBER_VALUE).
               for(@attribute).
               with_message(:odd)
