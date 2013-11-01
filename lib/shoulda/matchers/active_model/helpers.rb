@@ -23,7 +23,7 @@ module Shoulda # :nodoc:
         #   default_error_message(:too_long, count: 60)
         #   default_error_message(:blank, model_name: 'user', attribute: 'name')
         #   default_error_message(:blank, instance: #<Model>, attribute: 'name')
-        def default_error_message(key, model_name: nil, attribute: nil, instance: nil)
+        def default_error_message(key, model_name: nil, attribute: nil, instance: nil, **options)
           if instance && instance.errors.respond_to?(:generate_message)
             instance.errors.generate_message(attribute.to_sym, key, options)
           else
