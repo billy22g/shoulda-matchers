@@ -162,11 +162,11 @@ describe Shoulda::Matchers::ActiveModel::ValidatePresenceOfMatcher do
     active_model { validates_presence_of :attr }
   end
 
-  def has_many_children(options = {})
+  def has_many_children(presence: nil)
     define_model :child
     define_model :parent do
       has_many :children
-      if options[:presence]
+      if presence
         validates_presence_of :children
       end
     end.new

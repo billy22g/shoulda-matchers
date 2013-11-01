@@ -5,10 +5,8 @@ module Shoulda # :nodoc:
         NON_EVEN_NUMBER_VALUE = 1
         NON_ODD_NUMBER_VALUE  = 2
 
-        def initialize(attribute, options = {})
+        def initialize(attribute, odd: true, even: true)
           @attribute = attribute
-          options[:odd]   ||= true
-          options[:even]  ||= false
 
           if options[:odd] && !options[:even]
             @disallow_value_matcher = DisallowValueMatcher.new(NON_ODD_NUMBER_VALUE).

@@ -99,8 +99,8 @@ describe Shoulda::Matchers::ActiveModel::Helpers do
     end.new.should ensure_length_of(:attr).is_equal_to(40)
   end
 
-  def store_translations(options = {without: []})
-    options[:without] = Array.wrap(options[:without] || [])
+  def store_translations(without: [])
+    without = Array.wrap(without)
 
     translations = {
       activerecord: {
@@ -123,22 +123,22 @@ describe Shoulda::Matchers::ActiveModel::Helpers do
       }
     }
 
-    unless options[:without].include?(:model_attribute)
+    unless without.include?(:model_attribute)
       translations[:activerecord][:errors][:models][:example][:attributes][:attr][:blank] = "Don't you do that to me!"
       translations[:activerecord][:errors][:models][:example][:attributes][:attr][:wrong_length] = "Don't you do that to me!"
     end
 
-    unless options[:without].include?(:model)
+    unless without.include?(:model)
       translations[:activerecord][:errors][:models][:example][:blank] = 'Give it one more try!'
       translations[:activerecord][:errors][:models][:example][:wrong_length] = 'Give it one more try!'
     end
 
-    unless options[:without].include?(:message)
+    unless without.include?(:message)
       translations[:activerecord][:errors][:messages][:blank] = 'Oh no!'
       translations[:activerecord][:errors][:messages][:wrong_length] = 'Oh no!'
     end
 
-    unless options[:without].include?(:attribute)
+    unless without.include?(:attribute)
       translations[:errors][:attributes][:attr][:blank] = 'Seriously?'
       translations[:errors][:attributes][:attr][:wrong_length] = 'Seriously?'
     end
@@ -146,11 +146,7 @@ describe Shoulda::Matchers::ActiveModel::Helpers do
     I18n.backend.store_translations(:en, translations)
   end
 
-  def stub_active_model_message_generation(options = {})
-    attribute = options.delete(:attribute) || :attr
-    message = options.delete(:message)
-    type = options.delete(:type)
-
+  def stub_active_model_message_generation(attribute: :attr, message: nil, type: nil)
     ActiveModel::Errors.any_instance.expects(:generate_message).with(attribute, type, {}).at_least_once.returns(message)
   end
 end
