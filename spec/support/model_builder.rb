@@ -47,11 +47,11 @@ module ModelBuilder
   def define_model(name, columns = {}, &block)
     class_name = name.to_s.pluralize.classify
     table_name = class_name.tableize
-    table_block = lambda do |table|
+    table_block = ->(table) {
       columns.each do |name, type|
         table.column name, type
       end
-    end
+    }
 
     if columns.key?(:id) && columns[:id] == false
       columns.delete(:id)

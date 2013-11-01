@@ -28,7 +28,7 @@ module ControllerBuilder
   def build_response(opts = {}, &block)
     action = opts[:action] || 'example'
     partial = opts[:partial] || '_partial'
-    block ||= lambda { render :nothing => true }
+    block ||= -> { render nothing: true }
     controller_class = define_controller('Examples') do
       layout false
       define_method(action, &block)
