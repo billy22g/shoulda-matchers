@@ -276,7 +276,7 @@ module Shoulda # :nodoc:
           if option_verifier.correct_for_boolean?(:validate, options[:validate])
             true
           else
-            @missing = "#{name} should have :validate => #{options[:validate]}"
+            @missing = "#{name} should have validate: #{options[:validate]}"
             false
           end
         end
@@ -285,7 +285,7 @@ module Shoulda # :nodoc:
           if option_verifier.correct_for_boolean?(:touch, options[:touch])
             true
           else
-            @missing = "#{name} should have :touch => #{options[:touch]}"
+            @missing = "#{name} should have touch: #{options[:touch]}"
             false
           end
         end

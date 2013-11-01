@@ -24,7 +24,7 @@ Feature: integrate with Rails
       class ExamplesController < ApplicationController
         def show
           @example = 'hello'
-          render :nothing => true
+          render nothing: true
         end
       end
       """

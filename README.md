@@ -56,7 +56,7 @@ Matchers to test common patterns:
 describe PostsController, "#show" do
   context "for a fictional user" do
     before do
-      get :show, :id => 1
+      get :show, id: 1
     end
 
     it { should respond_with(:success) }
